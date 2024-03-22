@@ -1,0 +1,20 @@
+{
+  "name": "babylonjs-infinite-world-traversal",
+  "license": "(MIT OR Apache-2.0)",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format:write": "pnpm exec prettier . --write",
+    "format:check": "pnpm exec prettier . --check",
+    "nuke": "rm -rf node_modules pnpm-lock.yaml yarn.lock package-lock.json && pnpm install"
+  },
+  "devDependencies": {
+    "prettier": "3.2.5",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.2"
+  }
+}
