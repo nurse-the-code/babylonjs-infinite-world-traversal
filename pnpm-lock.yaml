@@ -4,7 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  "@babylonjs/core":
+    specifier: ^6.48.1
+    version: 6.48.1
+
 devDependencies:
+  "@babylonjs/materials":
+    specifier: ^6.48.1
+    version: 6.48.1(@babylonjs/core@6.48.1)
   prettier:
     specifier: 3.2.5
     version: 3.2.5
@@ -13,9 +21,26 @@ devDependencies:
     version: 5.4.3
   vite:
     specifier: ^5.2.2
-    version: 5.2.2
+    version: 5.2.3
 
 packages:
+  /@babylonjs/core@6.48.1:
+    resolution:
+      {
+        integrity: sha512-jlcLnd0T/UBvr7vvUz1RHPLSvNLGjcKtoDdC0B89WcGiILc3l7reIiarwAVVmh2w85q2chhm4p0UJDmgaEgBjw==,
+      }
+
+  /@babylonjs/materials@6.48.1(@babylonjs/core@6.48.1):
+    resolution:
+      {
+        integrity: sha512-P/MNlf3kB/Rd6sIjWeaByYlWKO+w9X8jbA3bUp7T8Chvo6JXTFKc4Zk2c5vQviKO/ldS3rIOFyN47hEmcWNtbQ==,
+      }
+    peerDependencies:
+      "@babylonjs/core": ^6.0.0
+    dependencies:
+      "@babylonjs/core": 6.48.1
+    dev: true
+
   /@esbuild/aix-ppc64@0.20.2:
     resolution:
       {
@@ -567,10 +592,10 @@ packages:
     hasBin: true
     dev: true
 
-  /vite@5.2.2:
+  /vite@5.2.3:
     resolution:
       {
-        integrity: sha512-FWZbz0oSdLq5snUI0b6sULbz58iXFXdvkZfZWR/F0ZJuKTSPO7v72QPXt6KqYeMFb0yytNp6kZosxJ96Nr/wDQ==,
+        integrity: sha512-+i1oagbvkVIhEy9TnEV+fgXsng13nZM90JQbrcPrf6DvW2mXARlz+DK7DLiDP+qeKoD1FCVx/1SpFL1CLq9Mhw==,
       }
     engines: { node: ^18.0.0 || >=20.0.0 }
     hasBin: true
