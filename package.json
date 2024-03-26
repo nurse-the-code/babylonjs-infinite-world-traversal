@@ -8,13 +8,17 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "test": "jest",
     "format:write": "pnpm exec prettier . --write",
     "format:check": "pnpm exec prettier . --check",
     "nuke": "rm -rf node_modules dist pnpm-lock.yaml yarn.lock package-lock.json && pnpm install"
   },
   "devDependencies": {
     "@babylonjs/materials": "^6.48.1",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
     "prettier": "3.2.5",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.4.3",
     "vite": "^5.2.2"
   },
