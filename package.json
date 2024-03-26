@@ -8,10 +8,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "jest",
+    "test:once": "jest",
+    "test:watch": "jest --watch",
     "format:write": "pnpm exec prettier . --write",
     "format:check": "pnpm exec prettier . --check",
-    "nuke": "rm -rf node_modules dist pnpm-lock.yaml yarn.lock package-lock.json && pnpm install"
+    "nuke": "rm -rf node_modules dist pnpm-lock.yaml yarn.lock package-lock.json && pnpm install && pnpm build"
   },
   "devDependencies": {
     "@babylonjs/materials": "^6.48.1",
