@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Format code
+if ! pnpm format:check; then
+  echo "\033[31mFormatting issues found! Run 'pnpm format:write' to fix them.\033[0m"
+  exit 1
+fi
+
+# Build project
+if ! pnpm build; then
+  echo "\033[31mBuild failed! Please fix the build errors and try again.\033[0m"
+  exit 1
+fi
+
+# Run tests
+if ! pnpm test:once; then
+  echo "\033[31mTests failed! Please fix the test errors and try again.\033[0m"
+  exit 1
+fi

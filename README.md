@@ -1,8 +1,9 @@
 # babylonjs-infinite-world-traversal
 
-This project is a **work-in-progress** [Babylon.js](https://babylonjs.com) demo that aims to showcase "_infinite_" world traversal by
-using a chunking system to selectively render parts of a procedurally-generated world. The goal is to efficiently load
-and unload parts of the world as the player explores, ensuring smooth performance and minimal memory usage.
+This project is a **work-in-progress** [Babylon.js](https://babylonjs.com) demo that aims to showcase "_infinite_" world
+traversal by using a chunking system to selectively render parts of a procedurally-generated world. The goal is to
+efficiently load and unload parts of the world as the player explores, ensuring smooth performance and minimal memory
+usage.
 
 Planned features include:
 
@@ -49,9 +50,44 @@ Before you begin, ensure you have the following installed:
    This command serves your app at `http://localhost:3000` and provides you with a development environment that
    automatically reloads when you make changes to the code.
 
+## Husky Integration
+
+[Husky](https://typicode.github.io/husky/) is integrated into this project to utilize Git hooks effectively. Git hooks
+are scripts that run automatically before or after events such as `commit`, `push`, and more. Husky simplifies the
+management of these hooks, allowing us to enforce quality checks and standards before code changes are committed.
+
+### What Husky Does for This Project
+
+In our project, Husky is configured to:
+
+- **Format Code:** Ensures that all committed code adheres to our formatting standards, leveraging Prettier. If code
+  formatting issues are detected, the commit will be halted until these issues are resolved.
+- **Run Tests:** Executes our suite of tests to ensure that new changes don't break existing functionality. Commits are
+  only successful if all tests pass, maintaining the integrity of our codebase.
+- **Build Verification:** Confirms that the project builds successfully without errors. This check prevents merging
+  broken code that could affect our deployment pipeline or disrupt others' work.
+
+### Setting up Husky
+
+Husky is set up through the `prepare` script in our `package.json`, which is run automatically after `pnpm install`.
+This step ensures that Husky and its hooks are properly initialized and ready to safeguard our codebase.
+
+```sh
+pnpm install
+```
+
+This will install project dependencies and set up Husky by executing:
+
+```sh
+pnpm build && husky install
+```
+
+By integrating Husky, we automate and enforce our code quality standards, making our development process smoother and
+more reliable.
+
 ## Building and Running Production
 
-When you're ready to build for production, use:
+After you've made changes, and you're ready to build for production, use:
 
 ```sh
 pnpm run build
@@ -121,3 +157,4 @@ Here are some resources to help you get up to speed with the tools and technolog
 - [Vite Documentation](https://vitejs.dev/guide/)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [BabylonJS Documentation](https://doc.babylonjs.com/)
+- [Husky Documentation](https://typicode.github.io/husky/)

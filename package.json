@@ -5,18 +5,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "pnpm build && husky install",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test:once": "jest",
     "test:watch": "jest --watch",
-    "format:write": "pnpm exec prettier . --write",
-    "format:check": "pnpm exec prettier . --check",
-    "nuke": "rm -rf node_modules dist pnpm-lock.yaml yarn.lock package-lock.json && pnpm install && pnpm build"
+    "format:write": "prettier . --write",
+    "format:check": "prettier . --check",
+    "nuke": "rm -rf node_modules dist pnpm-lock.yaml yarn.lock package-lock.json && pnpm install"
   },
   "devDependencies": {
     "@babylonjs/materials": "^6.48.1",
     "@types/jest": "^29.5.12",
+    "husky": "^9.0.11",
     "jest": "^29.7.0",
     "prettier": "3.2.5",
     "ts-jest": "^29.1.2",
