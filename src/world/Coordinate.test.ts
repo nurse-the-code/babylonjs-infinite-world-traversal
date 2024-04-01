@@ -110,7 +110,6 @@ describe("WorldCoordinate", () => {
 
       const actualDistance = coordinate1.distanceTo(coordinate2);
       const actualScaledDistance = actualDistance / 1.0e32;
-      console.log(actualScaledDistance);
 
       expect(actualScaledDistance).toBeCloseTo(expectedScaledDistance, 2);
     });
@@ -145,49 +144,49 @@ describe("WorldCoordinate", () => {
   describe("offset", () => {
     it("should return a new coordinate with the offset x and z values", () => {
       const coordinate = new WorldCoordinate(0, 0);
-      const offset = coordinate.offset(1, 2);
+      const offset = coordinate.offset({ dx: 1, dz: 2 });
       expect(offset.x).toBe(1);
       expect(offset.z).toBe(2);
     });
 
     it("should return a new coordinate with the offset x and z values with negative values", () => {
       const coordinate = new WorldCoordinate(0, 0);
-      const offset = coordinate.offset(-1, -2);
+      const offset = coordinate.offset({ dx: -1, dz: -2 });
       expect(offset.x).toBe(-1);
       expect(offset.z).toBe(-2);
     });
 
     it("should return a new coordinate with the offset x and z values with fractional values", () => {
       const coordinate = new WorldCoordinate(0, 0);
-      const offset = coordinate.offset(1.5, 2.5);
+      const offset = coordinate.offset({ dx: 1.5, dz: 2.5 });
       expect(offset.x).toBe(1.5);
       expect(offset.z).toBe(2.5);
     });
 
     it("should return a new coordinate with the correct offset x and z values for non-zero starting coordinates", () => {
       const coordinate = new WorldCoordinate(1, 1);
-      const offset = coordinate.offset(1, 2);
+      const offset = coordinate.offset({ dx: 1, dz: 2 });
       expect(offset.x).toBe(2);
       expect(offset.z).toBe(3);
     });
 
     it("should return a new coordinate with the correct offset x and z values for a cross-quadrant offset", () => {
       const coordinate = new WorldCoordinate(1, 1);
-      const offset = coordinate.offset(-2, -3);
+      const offset = coordinate.offset({ dx: -2, dz: -3 });
       expect(offset.x).toBe(-1);
       expect(offset.z).toBe(-2);
     });
 
     it("should not modify the original coordinate", () => {
       const coordinate = new WorldCoordinate(0, 0);
-      coordinate.offset(1, 2);
+      coordinate.offset({ dx: 1, dz: 2 });
       expect(coordinate.x).toBe(0);
       expect(coordinate.z).toBe(0);
     });
 
     it("should allow the offset to be zero", () => {
       const coordinate = new WorldCoordinate(0, 0);
-      const offset = coordinate.offset(0, 0);
+      const offset = coordinate.offset({ dx: 0, dz: 0 });
       expect(offset.x).toBe(0);
       expect(offset.z).toBe(0);
     });
@@ -197,24 +196,24 @@ describe("WorldCoordinate", () => {
         Number.MIN_SAFE_INTEGER,
         Number.MIN_SAFE_INTEGER,
       );
-      const offset = coordinate.offset(
-        Number.MAX_SAFE_INTEGER + 1,
-        Number.MAX_SAFE_INTEGER + 1,
-      );
+      const offset = coordinate.offset({
+        dx: Number.MAX_SAFE_INTEGER + 1,
+        dz: Number.MAX_SAFE_INTEGER + 1,
+      });
       expect(offset.x).toBe(1);
       expect(offset.z).toBe(1);
     });
 
     it("should throw an error if the resulting x value is less than the minimum safe integer", () => {
       const coordinate = new WorldCoordinate(Number.MIN_SAFE_INTEGER, 0);
-      expect(() => coordinate.offset(-1, 0)).toThrow(
+      expect(() => coordinate.offset({ dx: -1, dz: 0 })).toThrow(
         `The value for the x axis must be between ${Number.MIN_SAFE_INTEGER} and ${Number.MAX_SAFE_INTEGER}. Provided value: ${Number.MIN_SAFE_INTEGER - 1}`,
       );
     });
 
     it("should throw an error if the resulting z value is greater than the maximum safe integer", () => {
       const coordinate = new WorldCoordinate(0, Number.MAX_SAFE_INTEGER);
-      expect(() => coordinate.offset(0, 1)).toThrow(
+      expect(() => coordinate.offset({ dx: 0, dz: 1 })).toThrow(
         `The value for the z axis must be between ${Number.MIN_SAFE_INTEGER} and ${Number.MAX_SAFE_INTEGER}. Provided value: ${Number.MAX_SAFE_INTEGER + 1}`,
       );
     });

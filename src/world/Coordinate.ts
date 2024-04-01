@@ -3,13 +3,19 @@ interface Coordinate {
   readonly z: number;
   distanceTo(other: Coordinate): number;
   equals(other: Coordinate): boolean;
-  offset(dx: number, dz: number): Coordinate;
+
+  offset(offset: CoordinateOffset): Coordinate;
 }
 
 const X_AXIS = "x";
 const Z_AXIS = "z";
 
 type Axis = typeof X_AXIS | typeof Z_AXIS;
+
+export type CoordinateOffset = {
+  dx: number;
+  dz: number;
+};
 
 export class WorldCoordinate implements Coordinate {
   readonly x: number;
@@ -30,8 +36,8 @@ export class WorldCoordinate implements Coordinate {
     return this.x === other.x && this.z === other.z;
   }
 
-  offset(dx: number, dz: number): WorldCoordinate {
-    return new WorldCoordinate(this.x + dx, this.z + dz);
+  offset(offset: CoordinateOffset): Coordinate {
+    return new WorldCoordinate(this.x + offset.dx, this.z + offset.dz);
   }
 
   private validateCoordinate(value: number, axis: Axis): number {

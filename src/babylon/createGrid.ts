@@ -14,8 +14,8 @@ const createMaterial = (scene: Scene): Material => {
 
 const createGrid = (scene: Scene): GroundMesh => {
   const grid: GroundMesh = CreateGround("ground1", {
-    height: 32,
-    width: 32,
+    height: Number.MAX_SAFE_INTEGER,
+    width: Number.MAX_SAFE_INTEGER,
     subdivisions: 2,
   });
   grid.material = createMaterial(scene);
