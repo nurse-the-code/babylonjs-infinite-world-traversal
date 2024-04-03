@@ -1,5 +1,6 @@
 import Color, { generateColorFromCoordinate } from "./Color.ts";
-import Coordinate, { CoordinateOffset } from "./Coordinate.ts";
+import Coordinate from "../geometry/Coordinate.ts";
+import Vector from "../geometry/Vector.ts";
 
 // create a mock class to be shared between all the tests
 class MockCoordinate implements Coordinate {
@@ -19,7 +20,7 @@ class MockCoordinate implements Coordinate {
     throw new Error("Method not implemented.");
   }
 
-  offset(_offset: CoordinateOffset): Coordinate {
+  offset(_offset: Vector): Coordinate {
     throw new Error("Method not implemented.");
   }
 }

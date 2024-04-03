@@ -1,15 +1,19 @@
 import * as BABYLON from "@babylonjs/core";
-import createCamera from "./createCamera.ts";
+import Camera, { PlayerCamera } from "./Camera.ts";
 import createLight from "./createLight.ts";
 import createGrid from "./createGrid.ts";
+import Player, { DemoPlayer } from "../player/Player.ts";
 
 interface Scene {
   canvas: HTMLCanvasElement;
+  player: Player;
   renderLoop(): void;
 }
 
 export class SimpleBabylonScene implements Scene {
   canvas: HTMLCanvasElement;
+  player: Player;
+  camera: Camera;
   engine: BABYLON.Engine;
   scene: BABYLON.Scene;
 
@@ -17,19 +21,20 @@ export class SimpleBabylonScene implements Scene {
     // Find the canvas element by its ID
     this.canvas = canvas;
 
+    // Create a new player object
+    this.player = new DemoPlayer();
+
     // Initialize the Babylon engine with the canvas
     this.engine = new BABYLON.Engine(this.canvas, true);
 
     // Create the scene
     this.scene = new BABYLON.Scene(this.engine);
 
-    // Add basic elements to the scene (like camera, light, and a simple mesh)
-    this.setupScene();
-  }
+    // Add the player camera to the scene
+    this.camera = new PlayerCamera(this.scene, this.canvas, this.player);
 
-  setupScene(): void {
-    createCamera(this.scene, this.canvas);
     createLight(this.scene);
+
     createGrid(this.scene);
   }
 

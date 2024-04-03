@@ -1,4 +1,4 @@
-import Coordinate from "./Coordinate.ts";
+import Coordinate from "../geometry/Coordinate.ts";
 
 /**
  * Enum for color values based on the primary, secondary, and tertiary colors

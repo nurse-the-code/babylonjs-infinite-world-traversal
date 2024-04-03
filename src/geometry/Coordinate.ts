@@ -1,10 +1,11 @@
+import Vector, { Vector2D } from "./Vector.ts";
+
 interface Coordinate {
   readonly x: number;
   readonly z: number;
   distanceTo(other: Coordinate): number;
   equals(other: Coordinate): boolean;
-
-  offset(offset: CoordinateOffset): Coordinate;
+  offset(offset: Vector): Coordinate;
 }
 
 const X_AXIS = "x";
@@ -12,12 +13,7 @@ const Z_AXIS = "z";
 
 type Axis = typeof X_AXIS | typeof Z_AXIS;
 
-export type CoordinateOffset = {
-  dx: number;
-  dz: number;
-};
-
-export class WorldCoordinate implements Coordinate {
+export class Coordinate2D implements Coordinate {
   readonly x: number;
   readonly z: number;
 
@@ -26,18 +22,18 @@ export class WorldCoordinate implements Coordinate {
     this.z = this.validateCoordinate(z, Z_AXIS);
   }
 
-  distanceTo(other: WorldCoordinate): number {
+  distanceTo(other: Coordinate2D): number {
     const dx: number = this.x - other.x;
     const dz: number = this.z - other.z;
     return Math.sqrt(dx * dx + dz * dz);
   }
 
-  equals(other: WorldCoordinate): boolean {
+  equals(other: Coordinate2D): boolean {
     return this.x === other.x && this.z === other.z;
   }
 
-  offset(offset: CoordinateOffset): Coordinate {
-    return new WorldCoordinate(this.x + offset.dx, this.z + offset.dz);
+  offset(offset: Vector2D): Coordinate {
+    return new Coordinate2D(this.x + offset.x, this.z + offset.z);
   }
 
   private validateCoordinate(value: number, axis: Axis): number {
