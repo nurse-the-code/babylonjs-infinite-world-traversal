@@ -1,3 +1,5 @@
+import Direction from "./Direction.ts";
+
 // We are manually implementing vector classes and interfaces to maintain a
 // separation of concerns between the Babylon.js and game logic. In your own
 // projects, you might prefer to use Babylon.js's built-in vector classes.
@@ -9,6 +11,7 @@ interface Vector {
   normalize(): Vector;
   scale(factor: number): Vector;
   rotate(angleRadians: number): Vector;
+  rotateDirection(direction: Direction): Vector;
 }
 
 export class Vector2D implements Vector {
@@ -40,6 +43,25 @@ export class Vector2D implements Vector {
       this.x * cosTheta - this.z * sinTheta, // New x
       this.x * sinTheta + this.z * cosTheta, // New z
     );
+  }
+
+  rotateDirection(direction: Direction): Vector2D {
+    let angleRadians: number;
+    switch (direction) {
+      case Direction.Forward:
+        angleRadians = 0; // No rotation needed
+        break;
+      case Direction.Backward:
+        angleRadians = Math.PI; // 180 degrees in radians
+        break;
+      case Direction.Left:
+        angleRadians = Math.PI / 2; // 90 degrees in radians
+        break;
+      case Direction.Right:
+        angleRadians = -Math.PI / 2; // -90 degrees in radians
+        break;
+    }
+    return this.rotate(angleRadians);
   }
 }
 

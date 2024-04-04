@@ -1,7 +1,7 @@
-import { CreateGround, GroundMesh, Material, Scene } from "@babylonjs/core";
+import * as Babylon from "./imports.ts";
 import { GridMaterial } from "@babylonjs/materials/grid/gridMaterial";
 
-const createMaterial = (scene: Scene): Material => {
+const createMaterial = (scene: Babylon.Scene): Babylon.Material => {
   const material = new GridMaterial("grid", scene);
 
   // Grid configuration (1 unit is scaled to 1 meter)
@@ -12,8 +12,8 @@ const createMaterial = (scene: Scene): Material => {
   return material;
 };
 
-const createGrid = (scene: Scene): GroundMesh => {
-  const grid: GroundMesh = CreateGround("ground1", {
+const createGrid = (scene: Babylon.Scene): Babylon.GroundMesh => {
+  const grid: Babylon.GroundMesh = Babylon.CreateGround("ground1", {
     height: Number.MAX_SAFE_INTEGER,
     width: Number.MAX_SAFE_INTEGER,
     subdivisions: 2,

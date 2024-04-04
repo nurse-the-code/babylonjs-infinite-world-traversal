@@ -1,4 +1,5 @@
 import { Vector2D } from "./Vector.ts";
+import Direction from "./Direction.ts";
 
 describe("Vector2D", () => {
   describe("constructor", () => {
@@ -141,6 +142,31 @@ describe("Vector2D", () => {
       const result2 = vector2.rotate(angle);
       expect(result2.x).toBeCloseTo(0.707);
       expect(result2.z).toBeCloseTo(0.707);
+    });
+  });
+  describe("rotateDirection", () => {
+    it("should not change the rotation of a vector when the direction is Forward", () => {
+      const vector = new Vector2D(1, 2);
+      const result = vector.rotateDirection(Direction.Forward);
+      expect(result).toEqual(vector);
+    });
+    it("should rotate a vector 180 degrees when the direction is Backward", () => {
+      const vector = new Vector2D(-1, 2);
+      const result = vector.rotateDirection(Direction.Backward);
+      expect(result.x).toBeCloseTo(1);
+      expect(result.z).toBeCloseTo(-2);
+    });
+    it("should rotate a vector 90 degrees to the left when the direction is Left", () => {
+      const vector = new Vector2D(-0.707, -0.707);
+      const result = vector.rotateDirection(Direction.Left);
+      expect(result.x).toBeCloseTo(0.707);
+      expect(result.z).toBeCloseTo(-0.707);
+    });
+    it("should rotate a vector 90 degrees to the right when the direction is Right", () => {
+      const vector = new Vector2D(0.6, -0.8);
+      const result = vector.rotateDirection(Direction.Right);
+      expect(result.x).toBeCloseTo(-0.8);
+      expect(result.z).toBeCloseTo(-0.6);
     });
   });
 });

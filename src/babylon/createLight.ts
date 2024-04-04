@@ -1,10 +1,10 @@
-import { HemisphericLight, Light, Scene, Vector3 } from "@babylonjs/core";
+import * as Babylon from "./imports.ts";
 
-const createLight = (scene: Scene): Light => {
+const createLight = (scene: Babylon.Scene): Babylon.Light => {
   // Creates a HemisphericLight simulating ambient light with reflection direction upwards (0,1,0), no shadows
-  const light: Light = new HemisphericLight(
+  const light: Babylon.Light = new Babylon.HemisphericLight(
     "light1",
-    new Vector3(0, 1, 0),
+    new Babylon.Vector3(0, 1, 0),
     scene,
   );
 
