@@ -52,7 +52,6 @@ export class PlayerCamera implements Camera {
   }
 
   get forwardRayDirection() {
-    console.log(this.camera.getForwardRay().direction);
     const { x, z } = this.camera.getForwardRay().direction;
     return new Vector2D(x, z);
   }

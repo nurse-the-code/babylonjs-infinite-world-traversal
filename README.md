@@ -15,6 +15,9 @@ Limitations:
 
 - Currently, there is no plan to support a mutable world state. The world will be procedurally generated and static.
 - World coordinates beyond JavaScript's `Number.MAX_SAFE_INTEGER` and `Number.MIN_SAFE_INTEGER` will not be supported.
+  Currently, there is a floating point precision issue that causes observable visual artifacts when the player camera is
+  too far from the origin. These artifacts start to appear around `2**12` meters away from the origin, and become more
+  pronounced as the player moves even further away from the origin.
 
 Please note that the project is in the early stages of development, and the mentioned features are currently in the
 planning phase.

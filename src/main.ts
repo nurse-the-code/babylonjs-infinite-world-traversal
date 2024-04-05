@@ -1,13 +1,13 @@
-import MainCanvas from "./dom-components/Canvas.ts";
-import { SimpleBabylonScene } from "./babylon";
+import "./web-components";
+import createCanvas from "./web-components/Canvas.ts";
+import DebugOverlay, { createOverlay } from "./web-components/DebugOverlay.ts";
+import Scene from "./babylon";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const canvasComponent: HTMLCanvasElement = MainCanvas.create();
-  document.body.appendChild(canvasComponent);
+  const canvas: HTMLCanvasElement = createCanvas();
+  const overlay: DebugOverlay = createOverlay();
 
-  const simpleScene: SimpleBabylonScene = new SimpleBabylonScene(
-    canvasComponent,
-  );
+  const renderLoop = Scene(canvas, overlay);
 
-  simpleScene.renderLoop();
+  renderLoop();
 });
